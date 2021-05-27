@@ -1,5 +1,4 @@
 # JetAudioPlayer
-[TOC]
 ### 前言
 实现了一个极简版的音频播放器，音频解码使用 FFmpeg ，播放使用 OpenSl ES
 
