@@ -55,9 +55,16 @@
 ### 遇到的问题
 * #include jni.h  时报红，找不到 jni.h 
 
-解决方案：在网上看到一种方式，在 cmakelist 文件中 include ndk 头文件,而 stackoverflow 上的回答是 ndk r15 以后取消了对 gcc 的支持，需要调低 ndk 的版本，由于是几年前的回复了，所以暂时不考虑，先试着引入 ndk 路径
+解决方案：~~在网上看到一种方式，在 cmakelist 文件中 include ndk 头文件,而 stackoverflow 上的回答是 ndk r15 以后取消了对 gcc 的支持，需要调低 ndk 的版本，由于是几年前的回复了，所以暂时不考虑，先试着引入 ndk 路径~~
 
-[ndk cmake ‘jni.h‘ file not found 问题解决](https://blog.csdn.net/chuyouyinghe/article/details/112627658)
+发现 native-lib.cpp 中正常，但在同一目录下的，就不行,首先检查 ndk 环境变量是否正确配置,然后去项目的 local.properties 文件中配置 ndk 路径,最后去 Project Struct 中指定 ndk 版本,rebuild 项目后,爆红的部分消失
+
+```
+//  local.properties
+sdk.dir=C\:\\Soft\\sdk-eclipse
+ndk.dir=C\:\\Soft\\sdk-eclipse\\ndk-bundle
+```
+![image.png](https://upload-images.jianshu.io/upload_images/5639648-cde205da45acad9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/720)
 
 
 ### 相关链接
