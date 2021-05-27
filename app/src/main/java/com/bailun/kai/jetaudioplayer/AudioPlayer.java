@@ -18,7 +18,6 @@ public class AudioPlayer {
         System.loadLibrary("native-lib");
     }
 
-
     public void init(String url){
         if (url == null){
             return;
