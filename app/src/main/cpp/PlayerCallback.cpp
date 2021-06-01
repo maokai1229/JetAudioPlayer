@@ -5,12 +5,12 @@
 #include "PlayerCallback.h"
 #include "AndroidLog.h"
 
-PalyerCallback::PalyerCallback(_JavaVM *jVm, JNIEnv *jEnv,jobject *obj){
+PlayerCallback::PlayerCallback(_JavaVM *jVm, JNIEnv *jEnv, jobject *obj){
     javaVm = jVm;
     jniEnv = jEnv;
 //    jobj = obj;
     jobj = *obj;
-    jobj = jEnv->NewGlobalRef(reinterpret_cast<jobject>(obj));
+    jobj = jEnv->NewGlobalRef(jobj);
 
     jclass jclazz = jEnv->GetObjectClass(jobj);
 
@@ -22,9 +22,11 @@ PalyerCallback::PalyerCallback(_JavaVM *jVm, JNIEnv *jEnv,jobject *obj){
     }
     // 使用 jni 层调用 Java 反射方法
     jmid_inited = jEnv->GetMethodID(jclazz,"onInitedCallback","()V");
+
+    LOGE("jclazz ",jmid_inited)
 }
 
-void PalyerCallback::onInitedCallback(int threadType) {
+void PlayerCallback::onInitedCallback(int threadType) {
 
     if (threadType == MAIN_THREAD){
         // 主线程回调

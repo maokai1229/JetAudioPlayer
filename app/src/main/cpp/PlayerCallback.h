@@ -10,7 +10,7 @@
 #define MAIN_THREAD 0
 #define CHILD_THREAD 1
 
-class PalyerCallback{
+class PlayerCallback{
 
     public:
     // JVM 引用,用于在子线程也能回调
@@ -25,10 +25,10 @@ class PalyerCallback{
 
 public:
     //构造
-    PalyerCallback(_JavaVM *javaVm,JNIEnv *jniEnv,jobject* jobj);
+    PlayerCallback(_JavaVM *javaVm, JNIEnv *jniEnv, jobject* jobj);
 
     //析构
-    ~PalyerCallback();
+    ~PlayerCallback();
 
     // 回调 Java,播放器初始化成功
     void onInitedCallback(int threadType);

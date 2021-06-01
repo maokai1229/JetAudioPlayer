@@ -1,5 +1,7 @@
 package com.bailun.kai.jetaudioplayer;
 
+import android.util.Log;
+
 public class AudioPlayer {
 
     private String mAudioUrl;
@@ -33,7 +35,7 @@ public class AudioPlayer {
      * Jni 反射执行该方法
      */
     public void onInitedCallback(){
-
+        Log.e("来自 JNI 的回调"," Success");
     }
 
 }
