@@ -20,14 +20,12 @@ class PalyerCallback{
     // Java 对象的对应的指针地址
     jobject jobj;
     // Java 方法ID
-    jmethodID jmethodId;
+    jmethodID jmid_inited;
 
 
 public:
     //构造
     PalyerCallback(_JavaVM *javaVm,JNIEnv *jniEnv,jobject* jobj);
-
-    PalyerCallback(_JavaVM *javaVm, JNIEnv *jniEnv, const _jobject *jobj);
 
     //析构
     ~PalyerCallback();

@@ -29,4 +29,11 @@ public class AudioPlayer {
 
     public native void n_init(String url);
 
+    /**
+     * Jni 反射执行该方法
+     */
+    public void onInitedCallback(){
+
+    }
+
 }
