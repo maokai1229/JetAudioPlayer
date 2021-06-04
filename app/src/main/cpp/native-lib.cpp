@@ -2,7 +2,7 @@
 #include <string>
 #include "PlayerCallback.h"
 #include "AndroidLog.h"
-#include "AudioCodec.h"
+#include "AudioCore.h"
 #include "AudioNativePlayer.h"
 
 

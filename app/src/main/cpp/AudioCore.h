@@ -2,11 +2,12 @@
 // Created by 84534 on 2021/5/26.
 //
 
-#ifndef JETAUDIOPLAYER_AUDIOCODEC_H
-#define JETAUDIOPLAYER_AUDIOCODEC_H
+#ifndef JETAUDIOPLAYER_AUDIOCORE_H
+#define JETAUDIOPLAYER_AUDIOCORE_H
 #include "jni.h"
 #include <linux/stddef.h>
 #include "PlayerCallback.h"
+#include "AudioNativePlayer.h"
 #include <pthread.h>
 
 extern "C"
@@ -17,7 +18,7 @@ extern "C"
 
 const int AVFORMAT_SUCCESS = 0;
 
-class AudioCodec{
+class AudioCore{
 
     public:
          // 全局 JNI 回调
@@ -25,14 +26,15 @@ class AudioCodec{
          pthread_t *codec_thread = NULL;
          AVFormatContext  *avFormatContext = NULL;
          const char* url = NULL;
+         AudioNativePlayer * audioNativePlayer = NULL;
          pthread_t  thread_codec;
          pthread_mutex_t init_mutex;
 
     public:
-    AudioCodec(PlayerCallback *playerCallback, const char *url);
+    AudioCore(PlayerCallback *playerCallback, const char *url);
     void initFFmpeg();
     void prepare();
-    ~AudioCodec();
+    ~AudioCore();
 };
 
-#endif //JETAUDIOPLAYER_AUDIOCODEC_H
+#endif //JETAUDIOPLAYER_AUDIOCORE_H

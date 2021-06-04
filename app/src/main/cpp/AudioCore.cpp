@@ -2,10 +2,10 @@
 // Created by Admin on 2021/6/1.
 //
 
-#include "AudioCodec.h"
+#include "AudioCore.h"
 #include "AndroidLog.h"
 
-AudioCodec::AudioCodec(PlayerCallback *playerCallback, const char *url) {
+AudioCore::AudioCore(PlayerCallback *playerCallback, const char *url) {
    // 初始化解码器，内部使用 FFmpeg
     this->url = url;
     this->playerCallback = playerCallback;
@@ -23,7 +23,7 @@ void *decode(void *data) {
 /**
  * FFmpeg 初始化
  */
-void AudioCodec::initFFmpeg() {
+void AudioCore::initFFmpeg() {
     // 加互斥锁
     pthread_mutex_lock(&init_mutex);
     av_register_all();
@@ -50,7 +50,15 @@ void AudioCodec::initFFmpeg() {
         // 读取音频轨资源数据
         if (avFormatContext->streams[index]->codecpar->codec_type == AVMEDIA_TYPE_AUDIO){
             // 把数据保存到播放类中
+            if (audioNativePlayer == NULL){
+                audioNativePlayer = new AudioNativePlayer(avFormatContext,
+                                                          avFormatContext->streams[index]->codecpar,
+                                                          playerCallback);
+                // 保存其他信息
 
+                //
+
+            }
         }
     }
 
@@ -59,6 +67,6 @@ void AudioCodec::initFFmpeg() {
     pthread_mutex_unlock(&init_mutex);
 }
 
-void AudioCodec::prepare() {
+void AudioCore::prepare() {
     pthread_create(&thread_codec,NULL,decode,this);
 }

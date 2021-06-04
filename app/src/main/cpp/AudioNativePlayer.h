@@ -6,6 +6,7 @@
 #define JETAUDIOPLAYER_AUDIONATIVEPLAYER_H
 
 #include "include/libavformat/avformat.h"
+#include "PlayerCallback.h"
 
 extern "C"
 {
