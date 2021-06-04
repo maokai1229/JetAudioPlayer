@@ -4,6 +4,11 @@
 #include "AndroidLog.h"
 #include "AudioCodec.h"
 
+
+extern "C"{
+#include <libavformat/avformat.h>
+}
+
 _JavaVM *javaVM = NULL;
 PlayerCallback *palyerCallback = NULL;
 

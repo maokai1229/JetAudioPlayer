@@ -9,11 +9,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -L${CMAKE_SOURCE_DIR}/libs/${ANDROID_ABI
 message(-------------)
 message(${CMAKE_SOURCE_DIR})
 aux_source_directory(. SOURCE)
-
+#file(GLOB ALLC "src/main/cpp/*.cpp")
 add_library(
              native-lib
              SHARED
              ${SOURCE}
+#             ${ALLC}
              )
 
 

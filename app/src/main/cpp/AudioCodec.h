@@ -7,10 +7,13 @@
 #include "jni.h"
 #include <linux/stddef.h>
 #include "PlayerCallback.h"
+#include <pthread.h>
 
-extern "C"{
+extern "C"
+{
+#include <libavutil/time.h>
 #include "libavformat/avformat.h"
-}
+};
 
 
 class AudioCodec{
@@ -21,10 +24,13 @@ class AudioCodec{
          pthread_t *codec_thread = NULL;
          AVFormatContext  *avFormatContext = NULL;
          const char* url = NULL;
-
+         pthread_t  thread_codec;
+         pthread_mutex_t init_mutex;
 
     public:
     AudioCodec(PlayerCallback *playerCallback, const char *url);
+    void initFFmpeg();
+    void prepare();
     ~AudioCodec();
 };
 
