@@ -15,6 +15,7 @@ extern "C"
 #include "libavformat/avformat.h"
 };
 
+const int AVFORMAT_SUCCESS = 0;
 
 class AudioCodec{
 

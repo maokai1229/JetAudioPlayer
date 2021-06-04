@@ -3,6 +3,7 @@
 #include "PlayerCallback.h"
 #include "AndroidLog.h"
 #include "AudioCodec.h"
+#include "AudioNativePlayer.h"
 
 
 extern "C"{
